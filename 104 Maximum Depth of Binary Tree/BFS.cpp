@@ -8,7 +8,7 @@
  * };
  */
  
- class Solution {
+class Solution {
 public:
     int dep = 0;
     queue<TreeNode*> level;
