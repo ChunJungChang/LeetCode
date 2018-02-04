@@ -1,4 +1,4 @@
-/* Maximum Bboundary */
+/* Maximum Bboundary
  * INT_MAX = 3^x
  * log(INT_MAX) = log(3^x)
  * log(INT_MAX) = xlog3
@@ -11,9 +11,9 @@
 class Solution {
 public:
     bool isPowerOfThree(int n) {
-        if (n <= 0)
+        if (n <= 0) {
             return false;
-        else {
+        } else {
             int tmp = pow(3, (int)(log(INT_MAX) / log(3)));
             return (tmp % n == 0);
         }
