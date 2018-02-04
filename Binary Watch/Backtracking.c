@@ -1,3 +1,8 @@
+/**
+ * Return an array of size *returnSize.
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
 int led_hour[] = {1, 2, 4, 8};
 int led_hour_size;
 int led_min[] = {1, 2, 4, 8, 16, 32};
