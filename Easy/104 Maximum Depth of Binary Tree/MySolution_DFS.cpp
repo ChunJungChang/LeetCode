@@ -7,7 +7,6 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- 
 class Solution {
 public:
     int dep = 0;
