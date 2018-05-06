@@ -1,11 +1,11 @@
-/* Maximum Bboundary
- * INT_MAX = 3^x
- * log(INT_MAX) = log(3^x)
- * log(INT_MAX) = xlog3
- * x = log(INT_MAX) / log3
+/** Maximum Bboundary
+ *  INT_MAX = 3^x
+ *  log(INT_MAX) = log(3^x)
+ *  log(INT_MAX) = xlog3
+ *  x = log(INT_MAX) / log3
  *
- * Max3PowerInt = 1162261467; 3^19, 3^20 = 3486784401 > MaxInt32
- * MaxInt32 = 2147483647; 2^31 - 1
+ *  Max3PowerInt = 1162261467; 3^19, 3^20 = 3486784401 > MaxInt32
+ *  MaxInt32 = 2147483647; 2^31 - 1
  */
 
 class Solution {
