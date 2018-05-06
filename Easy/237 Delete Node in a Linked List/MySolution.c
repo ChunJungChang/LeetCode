@@ -5,7 +5,6 @@
  *     struct ListNode *next;
  * };
  */
-
 void deleteNode(struct ListNode* node) {
     node->val = node->next->val;
     if (node->next->next == NULL) {
