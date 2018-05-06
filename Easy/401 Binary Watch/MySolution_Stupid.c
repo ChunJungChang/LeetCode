@@ -2,7 +2,6 @@
  * Return an array of size *returnSize.
  * Note: The returned array must be malloced, assume caller calls free().
  */
-
 char** readBinaryWatch(int num, int* returnSize) {
     int leds = num, hourleds = 0, minleds = 0, hidxmax = 5, midxmax = 20, i = 0, j = 0;
     char tmp[6] = {0};
