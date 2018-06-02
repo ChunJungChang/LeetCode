@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 
 void print_arr(int* nums, int numsSize) {
     int i = 0;
