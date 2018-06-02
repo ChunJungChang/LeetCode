@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void print_arry(int* nums, int numsSize) {
+void print_arr(int* nums, int numsSize) {
     int i = 0;
     
     for (i = 0 ; i < numsSize ; i++) {
@@ -63,9 +63,9 @@ void quick_sort(int start, int end, int* nums) {
 int main(void) {
     int buf[8] = {4, 7, 1, 9, 2, 5, 8, 3};
     
-    print_arry(buf, BUF_SIZE);
+    print_arr(buf, BUF_SIZE);
     quick_sort(0, BUF_SIZE - 1, buf);
-    print_arry(buf, BUF_SIZE);
+    print_arr(buf, BUF_SIZE);
     
     return 0;
 }
