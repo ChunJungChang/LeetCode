@@ -38,7 +38,7 @@ void quick_sort(int start, int end, int* nums) {
 }
 
 int arrayPairSum(int* nums, int numsSize) {
-    int i = 0, j = 0, tmp = 0, sum = 0;
+    int i = 0, sum = 0;
     
     /* Quick Sort Recursive */
     quick_sort(0, numsSize - 1, nums);
