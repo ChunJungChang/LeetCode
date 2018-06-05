@@ -33,7 +33,6 @@ Range setRange(int s, int e) {
 void quick_sort(int* nums, int numsSize) {
     int idx = 0, left = 0, right = 0, start = 0, end = 0;
     Range r[numsSize];
-    int i = 0;
     
     r[idx] = setRange(0, numsSize - 1);
     
