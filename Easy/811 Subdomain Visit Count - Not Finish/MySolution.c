@@ -22,9 +22,8 @@ char** subdomainVisits(char** cpdomains, int cpdomainsSize, int* returnSize) {
             /*
              * Compare all temporarily result,
              * each temporarily result likes "900 mail.com" or "900 com",
-             * so need to do strtok again,
-             * if find add cnt to temporarily result,
-             * if not find use malloc
+             * if find it then add cnt to temporarily result,
+             * if not find any then use malloc
              */
             /*
             for (i = 0 ; i < retsize ; i++) {
