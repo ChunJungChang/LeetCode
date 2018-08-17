@@ -6,20 +6,17 @@
  *     struct TreeNode *right;
  * };
  */
+/* Your runtime beats 100.00 % of c submissions. */
 struct TreeNode* searchBST(struct TreeNode* root, int val) {
     if (!root) {
         return NULL;
     }
     
-    struct TreeNode *node = NULL;
-    
     if (root->val < val) {
-        node = searchBST(root->right, val);
+        return searchBST(root->right, val);
     } else if (root->val > val) {
-        node = searchBST(root->left, val);
+        return searchBST(root->left, val);
     } else {
-        node = root;
+        return root;
     }
-    
-    return node;
 }
