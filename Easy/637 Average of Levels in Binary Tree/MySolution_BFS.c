@@ -57,6 +57,7 @@ double* averageOfLevels(struct TreeNode* root, int* returnSize) {
         ret = (double*)realloc(ret, (dep + 1) * sizeof(double));
         ret[dep++] = sum / node_cnt;
     }
+    free(level_node);
     
     *returnSize = dep;
     return ret;
