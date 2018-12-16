@@ -23,7 +23,6 @@ void BFS(struct TreeNode* root) {
         
         /* Lazy to count how many nodes are in next level, just allocate maximum size */
         level_node = (struct TreeNode**)malloc(2 * node_cnt * sizeof(struct TreeNode*));
-        double sum = 0;
         for (int i = 0 ; i < node_cnt ; i++) {
             struct TreeNode *ptr = node[i];
             node[i] = NULL;
