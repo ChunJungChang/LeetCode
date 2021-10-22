@@ -15,8 +15,8 @@ int minDepth(struct TreeNode* root){
         return 0;
     }
     
-    leftDepth += minDepth(root->left);
-    rightDepth += minDepth(root->right);
+    leftDepth = minDepth(root->left);
+    rightDepth = minDepth(root->right);
     
     if (leftDepth == 0 && rightDepth == 0) {
         return 1;
