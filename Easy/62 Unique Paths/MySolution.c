@@ -13,7 +13,6 @@ int uniquePaths(int m, int n){
     for (i = 1; i < m; i++) {
         for (j = 1; j < n; j++) {
             pathArr[i][j] = pathArr[i - 1][j] + pathArr[i][j - 1];
-            printf("pathArr[%d][%d]: %d\n", i, j, pathArr[i][j]);
         }
     }
     
