@@ -12,14 +12,6 @@ class Solution:
         
         for i in range(1, m):
             for j in range(1, n):
-                lastUp = stepArr[i - 1][j]
-                lastLeft = stepArr[i][j - 1]
-                
-                if lastUp <= lastLeft:
-                    lastStep = lastUp
-                else:
-                    lastStep = lastLeft
-                
-                stepArr[i][j] = lastStep + grid[i][j]
+                stepArr[i][j] = min(stepArr[i - 1][j], stepArr[i][j - 1]) + grid[i][j]
         
         return stepArr[m - 1][n - 1]
