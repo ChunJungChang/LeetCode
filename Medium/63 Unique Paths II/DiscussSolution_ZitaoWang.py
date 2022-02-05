@@ -1,6 +1,4 @@
 """
-ZitaoWang
-
 Dynamic programming O(nm) time, O(nm) space.
 """
 
