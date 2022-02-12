@@ -2,19 +2,20 @@ class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         ret = []
         
-        def backtracking(start, cnt):
-            res = []
-            
+        def backtracking(cur, cnt, combList):    
             if cnt == 1:
-                for i in range(start, n + 1):
-                    res.append([i])
-                return res
+                for i in range(cur, n + 1):
+                    combList.append(i)
+                    ret.append(combList.copy())
+                    combList.pop()
+                return
             
-            for i in range(start, n):
-                tmp = backtracking(i + 1, cnt - 1)
-                for item in tmp:
-                    res.append([i] + item.copy())
-            return res
+            for i in range(cur, n):
+                if (i + cnt - 1) <= n: # Stop earlier
+                    combList.append(i)
+                    backtracking(i + 1, cnt - 1, combList)
+                    combList.pop()
+        
+        backtracking(1, k, [])
 
-        ret = backtracking(1, k)
         return ret
