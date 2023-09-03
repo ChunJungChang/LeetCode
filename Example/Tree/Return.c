@@ -6,6 +6,7 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
     *returnSize = 1;
     returnColumnSizes[0] = (int *)malloc(1 * sizeof(int));
     returnColumnSizes[0][0] = 5;
+
     ret = (int**)malloc(1 * sizeof(int*));
     ret[0] = (int *)malloc(5 * sizeof(int));
     ret[0][0] = 3;
