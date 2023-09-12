@@ -19,7 +19,6 @@ bool isValidBSTHelper(struct TreeNode* root, int* returnSize, int **inorderList)
 
     retLeft = isValidBSTHelper(root->left, &returnSizeLeft, &leftInorderList);
     retRight = isValidBSTHelper(root->right, &returnSizeRight, &rightInorderList);
-
     /*
     printf("root->val: %d\n", root->val);
     printf("leftInorderList: ");
@@ -36,18 +35,18 @@ bool isValidBSTHelper(struct TreeNode* root, int* returnSize, int **inorderList)
     
     *returnSize = returnSizeLeft + returnSizeRight + 1;
     *inorderList = (int*)calloc(*returnSize, sizeof(int));
-
     /*
     printf("*returnSize: %d = returnSizeLeft: %d + returnSizeRight: %d + 1\n", *returnSize, returnSizeLeft, returnSizeRight);
     */
     
     for (i = 0; i < returnSizeLeft; i++) {
         (*inorderList)[i] = leftInorderList[i];
-        if (leftInorderList[i] >= root->val) {
-            ret = false;
-        }
     }
     if (leftInorderList) {
+        if (leftInorderList[returnSizeLeft - 1] >= root->val) {
+            ret = false;
+        }
+
         free(leftInorderList);
         leftInorderList = NULL;
     }
@@ -68,11 +67,12 @@ bool isValidBSTHelper(struct TreeNode* root, int* returnSize, int **inorderList)
 
     for (i = returnSizeLeft + 1; i < *returnSize; i++) {
         (*inorderList)[i] = rightInorderList[i - (returnSizeLeft + 1)];
-        if (root->val >= rightInorderList[i - (returnSizeLeft + 1)]) {
-            ret = false;
-        }
     }
     if (rightInorderList) {
+        if (root->val >= rightInorderList[0]) {
+            ret = false;
+        }
+
         free(rightInorderList);
         rightInorderList = NULL;
     }
