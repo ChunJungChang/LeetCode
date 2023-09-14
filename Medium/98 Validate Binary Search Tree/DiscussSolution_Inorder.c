@@ -30,7 +30,7 @@ bool isValidBSTHelper(struct TreeNode* root){
 bool isValidBST(struct TreeNode* root){
     bool ret = false;
 
-    ret =  isValidBSTHelper(root);
+    ret = isValidBSTHelper(root);
     
     prev = NULL;
 
