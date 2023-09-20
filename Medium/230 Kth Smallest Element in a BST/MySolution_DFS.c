@@ -11,7 +11,7 @@ int inorderTraversal(struct TreeNode *root, int k, int *nodeCnt) {
     int leftCnt = 0, rightCnt = 0, cnt = 0, ret = -1;
 
     if (!root) {
-        return -1; /* Initial value, 0 <= root->val <=10^4 */
+        return -1; /* Initial value, 0 <= root->val <= 10^4 */
     }
 
     ret = inorderTraversal(root->left, k, nodeCnt);
