@@ -17,7 +17,7 @@ int inorderTraversal(struct TreeNode *root, int k, int *nodeCnt) {
     ret = inorderTraversal(root->left, k, nodeCnt);
     *nodeCnt += 1; /* Count current node */
     if (ret > -1) {
-        /* Find kth node, do nothing */
+        /* Already find kth node, do nothing */
     } else if (*nodeCnt == k) {
         ret = root->val;
     } else {
