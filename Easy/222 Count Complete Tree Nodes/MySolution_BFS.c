@@ -34,12 +34,10 @@ int countNodes(struct TreeNode* root){
         
         for (i = 0; i < levelSize; i++) {
             if (copyLevelNode[i]->left) {
-                levelNode[nextLevelSize] = copyLevelNode[i]->left;
-                nextLevelSize++;
+                levelNode[nextLevelSize++] = copyLevelNode[i]->left;
             }
             if (copyLevelNode[i]->right) {
-                levelNode[nextLevelSize] = copyLevelNode[i]->right;
-                nextLevelSize++;
+                levelNode[nextLevelSize++] = copyLevelNode[i]->right;
             }
         }
         levelSize = nextLevelSize;
@@ -49,7 +47,11 @@ int countNodes(struct TreeNode* root){
             free(copyLevelNode);
             copyLevelNode = NULL;
         }
-        
+    }
+
+    if (levelNode) {
+        free(levelNode);
+        levelNode = NULL;
     }
 
     return ret;
