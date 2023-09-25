@@ -19,7 +19,10 @@ void BFS(struct TreeNode* root) {
             node[i] = level_node[i];
             level_node[i] = NULL;
         }
-        free(level_node);
+        if (level_node) {
+            free(level_node);
+            level_node = NULL;
+        }
         
         /* Lazy to count how many nodes are in next level, just allocate maximum size */
         level_node = (struct TreeNode**)malloc(2 * node_cnt * sizeof(struct TreeNode*));
@@ -36,7 +39,14 @@ void BFS(struct TreeNode* root) {
                 level_node[level_size++] = ptr->right;
             }
         }
-        free(node);
+        if (node) {
+            free(node);
+            node = NULL;
+        }
     }
-    free(level_node);
+
+    if (level_node) {
+        free(level_node);
+        level_node = NULL;
+    }
 }
