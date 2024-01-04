@@ -131,7 +131,7 @@ int** verticalOrder(struct TreeNode* root, int* returnSize, int** returnColumnSi
       * Index: -100~-1      0(root)     1~100
       * Shift:    0~99    100(root)   101~200
       *
-      * Copy elements in hash table to array
+      * Copy elements from hash table to array
       */
     HASH_ITER(hh, hashOrderMap,hashOrderNode, hashOrderNodeTmp) {
         idx = hashOrderNode->key;
@@ -157,7 +157,7 @@ int** verticalOrder(struct TreeNode* root, int* returnSize, int** returnColumnSi
         }
     }
     /**
-     * Copy elements in array to ret
+     * Copy elements from array to ret
      */
     returnColumnSizes[0] = (int *)malloc(*returnSize * sizeof(int));
     ret = (int**)calloc(*returnSize, sizeof(int*));
