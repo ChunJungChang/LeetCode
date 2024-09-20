@@ -31,6 +31,7 @@ void swap(int* a, int* b)
     *b = temp;
 }
 
+#if 0
 void maxHeapify(struct heap_t *maxHeap, int i)
 {
     int largest = i;
@@ -50,6 +51,29 @@ void maxHeapify(struct heap_t *maxHeap, int i)
         maxHeapify(maxHeap, largest);
     }
 }
+#endif
+void maxHeapify(struct heap_t *maxHeap, int i)
+{
+    int largest = i, leftChild = 0, rightChild = 0;
+
+    do  {
+        leftChild = 2 * i + 1;
+        rightChild = 2 * i + 2;
+
+        if (leftChild < maxHeap->size && maxHeap->elms[leftChild] > maxHeap->elms[largest]) {
+            largest = leftChild;
+        }
+
+        if (rightChild < maxHeap->size && maxHeap->elms[rightChild] > maxHeap->elms[largest]) {
+            largest = rightChild;
+        }
+
+        if (largest != i) {
+            swap(&maxHeap->elms[i], &maxHeap->elms[largest]);
+            i= largest;
+        }
+    } while (i != largest);
+}
 
 void maxInsert(struct heap_t *maxHeap, int num) {
     int i = 0;
@@ -64,6 +88,7 @@ void maxInsert(struct heap_t *maxHeap, int num) {
     }
 }
 
+#if 0
 int extractMax(struct heap_t *maxHeap)
 {
     int root = INT_MIN;
@@ -84,26 +109,76 @@ int extractMax(struct heap_t *maxHeap)
 
     return root;
 }
-
-void maxDeleteTarget(struct heap_t *maxHeap, int num) {
-    int lastNum = 0, i = 0;
+#endif
+void maxDelete(struct heap_t *maxHeap) {
+    int lastNum = 0, child = 0, i = 0;
     
     lastNum = maxHeap->elms[maxHeap->size - 1];
     
-    for (i = 0; i < maxHeap->size; i++) {
-        if (maxHeap->elms[i] == num) {
+    for (i = 0; i * 2 + 1 < maxHeap->size; i = child) {
+        if (i * 2 + 2 < maxHeap->size) {
+            child = maxHeap->elms[i * 2 + 1] > maxHeap->elms[i * 2 + 2] ? i * 2 + 1 : i * 2 + 2;
+        } else {
+            child = i * 2 + 1;
+        }
+
+        if (maxHeap->elms[child] > lastNum) {
+            maxHeap->elms[i] = maxHeap->elms[child];
+        } else {
             break;
         }
     }
     maxHeap->elms[i] = lastNum;
     
     maxHeap->size -= 1;
+}
+
+#if 0
+void maxDeleteTarget(struct heap_t *maxHeap, int num) {
+    int lastNum = 0, i = 0;
+    
+    lastNum = maxHeap->elms[maxHeap->size - 1];
+    for (i = 0; i < maxHeap->size; i++) {
+        if (maxHeap->elms[i] == num) {
+            break;
+        }
+    }
+    maxHeap->elms[i] = lastNum;
+    maxHeap->size -= 1;
 	
-    for (i = maxHeap->size / 2 - 1; i >= 0; i--) {
+    for (i; i >= 0; i = (i - 1) / 2) {
         maxHeapify(maxHeap, i);
     }
 }
+#endif
+void maxDeleteTarget(struct heap_t *maxHeap, int num) {
+    int lastNum = 0, child = 0, i = 0;
+    
+    lastNum = maxHeap->elms[maxHeap->size - 1];
+    for (i = 0; i < maxHeap->size; i++) {
+        if (maxHeap->elms[i] == num) {
+            break;
+        }
+    }
+    for (i; i * 2 + 1 < maxHeap->size; i = child) {
+        if (i * 2 + 2 < maxHeap->size) {
+            child = maxHeap->elms[i * 2 + 1] > maxHeap->elms[i * 2 + 2] ? i * 2 + 1 : i * 2 + 2;
+        } else {
+            child = i * 2 + 1;
+        }
 
+        if (maxHeap->elms[child] > lastNum) {
+            maxHeap->elms[i] = maxHeap->elms[child];
+        } else {
+            break;
+        }
+    }
+    maxHeap->elms[i] = lastNum;
+
+    maxHeap->size -= 1;
+}
+
+#if 0
 void minHeapify(struct heap_t *minHeap, int i)
 {
     int smallest = i;
@@ -123,6 +198,29 @@ void minHeapify(struct heap_t *minHeap, int i)
         minHeapify(minHeap, smallest);
     }
 }
+#endif
+void minHeapify(struct heap_t *minHeap, int i)
+{
+    int smallest = i, leftChild = 0, rightChild = 0;
+
+    do  {
+        leftChild = 2 * i + 1;
+        rightChild = 2 * i + 2;
+
+        if (leftChild < minHeap->size && minHeap->elms[leftChild] < minHeap->elms[smallest]) {
+            smallest = leftChild;
+        }
+
+        if (rightChild < minHeap->size && minHeap->elms[rightChild] < minHeap->elms[smallest]) {
+            smallest = rightChild;
+        }
+
+        if (smallest != i) {
+            swap(&minHeap->elms[i], &minHeap->elms[smallest]);
+            i= smallest;
+        }
+    } while (i != smallest);
+}
 
 void minInsert(struct heap_t *minHeap, int num) {
     int i = 0;
@@ -137,6 +235,7 @@ void minInsert(struct heap_t *minHeap, int num) {
     }
 }
 
+#if 0
 int extractMin(struct heap_t *minHeap)
 {
     int root = INT_MAX;
@@ -157,24 +256,72 @@ int extractMin(struct heap_t *minHeap)
 
     return root;
 }
-
-void minDeleteTarget(struct heap_t *minHeap, int num) {
-    int lastNum = 0, i = 0;
+#endif
+void minDelete(struct heap_t *minHeap) {
+    int lastNum = 0, child = 0, i = 0;
     
     lastNum = minHeap->elms[minHeap->size - 1];
-    
-    for (i = 0; i < minHeap->size; i++) {
-        if (minHeap->elms[i] == num) {
+    for (i = 0; i * 2 + 1 < minHeap->size; i = child) {
+        if (i * 2 + 2 < minHeap->size) {
+            child = minHeap->elms[i * 2 + 1] < minHeap->elms[i * 2 + 2] ? i * 2 + 1 : i * 2 + 2;
+        } else {
+            child = i * 2 + 1;
+        }
+        
+        if (minHeap->elms[i] < lastNum) {
+            minHeap->elms[i] = minHeap->elms[child];
+        } else {
             break;
         }
     }
     minHeap->elms[i] = lastNum;
     
     minHeap->size -= 1;
+}
+
+#if 0
+void minDeleteTarget(struct heap_t *minHeap, int num) {
+    int lastNum = 0, i = 0;
+    
+    lastNum = minHeap->elms[minHeap->size - 1];
+    for (i = 0; i < minHeap->size; i++) {
+        if (minHeap->elms[i] == num) {
+            break;
+        }
+    }
+    minHeap->elms[i] = lastNum;
+    minHeap->size -= 1;
 	
-    for (i = minHeap->size / 2 - 1; i >= 0; i--) {
+    for (i = (minHeap->size - 1) / 2; i >= 0; i--) {
         minHeapify(minHeap, i);
     }
+}
+#endif
+void minDeleteTarget(struct heap_t *minHeap, int num) {
+    int lastNum = 0, child = 0, i = 0;
+    
+    lastNum = minHeap->elms[minHeap->size - 1];
+    for (i = 0; i < minHeap->size; i++) {
+        if (minHeap->elms[i] == num) {
+            break;
+        }
+    }
+    for (i; i * 2 + 1 < minHeap->size; i = child) {
+        if (i * 2 + 2 < minHeap->size) {
+            child = minHeap->elms[i * 2 + 1] < minHeap->elms[i * 2 + 2] ? i * 2 + 1 : i * 2 + 2;
+        } else {
+            child = i * 2 + 1;
+        }
+        
+        if (minHeap->elms[i] < lastNum) {
+            minHeap->elms[i] = minHeap->elms[child];
+        } else {
+            break;
+        }
+    }
+	minHeap->elms[i] = lastNum;
+
+    minHeap->size -= 1;
 }
 
 double* medianSlidingWindow(int* nums, int numsSize, int k, int* returnSize) {
@@ -201,13 +348,22 @@ double* medianSlidingWindow(int* nums, int numsSize, int k, int* returnSize) {
         }
 
         if (maxHeap->size > minHeap->size + 1) {
+            /*
             maxPop = extractMax(maxHeap);
             minInsert(minHeap, maxPop);
+            */
+            maxPop = maxHeap->elms[0];
+            maxDelete(maxHeap);
+            minInsert(minHeap, maxPop);
         } else if (maxHeap->size < minHeap->size) {
+            /*
             minPop = extractMin(minHeap);
             maxInsert(maxHeap, minPop);
+            */
+            minPop = minHeap->elms[0];
+            minDelete(minHeap);
+            maxInsert(maxHeap, minPop);
         }
-
 
         j = i - k + 1;
         if (j >= 0) {
@@ -226,10 +382,20 @@ double* medianSlidingWindow(int* nums, int numsSize, int k, int* returnSize) {
             }
 
             if (maxHeap->size > minHeap->size + 1) {
+                /*
                 maxPop = extractMax(maxHeap);
                 minInsert(minHeap, maxPop);
+                */
+                maxPop = maxHeap->elms[0];
+                maxDelete(maxHeap);
+                minInsert(minHeap, maxPop);
             } else if (maxHeap->size < minHeap->size) {
+                /*
                 minPop = extractMin(minHeap);
+                maxInsert(maxHeap, minPop);
+                */
+                minPop = minHeap->elms[0];
+                minDelete(minHeap);
                 maxInsert(maxHeap, minPop);
             }
         }
