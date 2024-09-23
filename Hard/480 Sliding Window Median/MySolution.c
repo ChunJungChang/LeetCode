@@ -124,6 +124,7 @@ void minHeapifyUp(struct heap_t *minHeap, int idx) {
         parent = (idx - 1) / 2;
     }
 }
+
 void minHeapifyDown(struct heap_t *minHeap, int idx)
 {
     int smallest = idx;
