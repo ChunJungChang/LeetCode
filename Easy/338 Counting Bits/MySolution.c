@@ -10,7 +10,7 @@ int* countBits(int n, int* returnSize) {
     *returnSize = n + 1;
     ret = (int*)calloc(*returnSize, sizeof(int));
 
-    for (i = 0; i <= n; i ++) {
+    for (i = 0; i <= n; i++) {
         cnt = 0;
 
         for (j = 0; j <= log2(i); j++) {
