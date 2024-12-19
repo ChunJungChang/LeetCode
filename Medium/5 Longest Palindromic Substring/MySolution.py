@@ -46,4 +46,3 @@ class Solution:
                 ret = curStr
 
         return ret
-                    
