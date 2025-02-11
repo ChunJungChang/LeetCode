@@ -13,13 +13,14 @@ class Solution:
             col < 0 or col == self.ColBoundary or \
             board[row][col] != word[0]):
             return False
-        # Step 3: Explore the neighbors in DFS.
+        # Mark the choice before exploring further.
         board[row][col] = '#'
-        ret = self.existHelp(board, row - 1, col, word[1:]) or \
-              self.existHelp(board, row + 1, col, word[1:]) or \
-              self.existHelp(board, row, col - 1, word[1:]) or \
-              self.existHelp(board, row, col + 1, word[1:])
-        # Step 4: Clean up and return the result.
+        # Step 3: Explore the 4 neighbor directions in DFS.
+        for rowOffset, colOffset in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            ret = self.existHelp(board, row + rowOffset, col + colOffset, word[1:])
+            if ret:
+                break
+        # Step 4: Revert the change and return the result.
         board[row][col] = word[0]
 
         return ret
@@ -28,8 +29,8 @@ class Solution:
         self.RowBoundary = len(board)
         self.ColBoundary = len(board[0])
 
-        for row in range(len(board)):
-            for col in range(len(board[row])):
+        for row in range(self.RowBoundary):
+            for col in range(self.ColBoundary):
                 if self.existHelp(board, row, col, word):
                     return True
 
