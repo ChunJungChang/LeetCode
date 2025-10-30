@@ -1,5 +1,3 @@
-
-
 int maxSubArray(int* nums, int numsSize){
     int curSum = nums[0], globalSum = nums[0], i = 0;
     
