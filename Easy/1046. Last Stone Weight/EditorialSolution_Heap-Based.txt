@@ -1,0 +1,14 @@
+Here is the pseudocode using a Heap.
+
+define function last_stone_weight(stones):
+    heap = a new Max-Heap
+    add all stones to heap
+    while heap contains more than 1 stone:
+        heavy_stone_1 = remove max from heap
+        heavy_stone_2 = remove max from heap
+        if heavy_stone_1 is heavier than heavy_stone_2:
+            new_stone = heavy_stone_1 - heavy_stone_2
+            add new_stone to heap
+    if heap is empty:
+        return 0
+    return last stone on heap
