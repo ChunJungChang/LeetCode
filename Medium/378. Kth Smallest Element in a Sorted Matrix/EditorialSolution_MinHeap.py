@@ -10,7 +10,7 @@ class Solution:
         minHeap = []
         for r in range(min(k, N)):
             
-            # We add triplets of information for each cell
+            # We add triplets of information (value, row, column) for each cell
             minHeap.append((matrix[r][0], r, 0))
         
         # Heapify our list
